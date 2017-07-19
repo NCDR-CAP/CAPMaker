@@ -17,9 +17,20 @@ namespace CAPMaker
 {
     public partial class Main : Form
     {
+        public enum AreaType
+        {
+            geocode,
+            circle,
+            polygon
+        }
+
+
         public Dictionary<string, object> valueDicetonary = new Dictionary<string, object>();
 
         public List<string> invalidString = new List<string>();
+
+        public AreaType _areatype = AreaType.geocode;
+
 
         public Main()
         {
@@ -27,7 +38,7 @@ namespace CAPMaker
 
             init();
 
-            this.Text = string.Format("{0} (beta) ", this.Text);
+            this.Text = string.Format("{0}", this.Text);
         }
 
         void init()
@@ -45,20 +56,58 @@ namespace CAPMaker
             nudSentMinute.Value = nudExpiresMinute.Value = nudEffectiveMinute.Value = nudOnsetMinute.Value = now.Minute;
             nudSentSecond.Value = nudExpiresSecond.Value = nudEffectiveSecond.Value = nudOnsetSecond.Value = now.Second;
 
+            gvAREA.Columns[0].Width = 160;
+            gvAREA.Columns[1].Width = 140;
+
+            initArea();
 
             tTrigger.Start();
         }
 
+        void initArea()
+        {
+            var atype = Properties.Settings.Default.Areatype.ToLower();
+            string aValue = "";
+            switch (atype)
+            {
+                case "circle":
+                    rbCircle.Checked = true;
+                    aValue = Properties.Settings.Default.Circle;
+                    break;
+                case "polygon":
+                    rbPolygon.Checked = true;
+                    aValue = Properties.Settings.Default.Polygon;
+                    break;
+                case "geocode":
+                    rbGeocode.Checked = true;
+                    aValue = Properties.Settings.Default.Geocode;
+                    break;
+            }
+
+            gvAREA.Rows.Add();
+
+            gvAREA.Rows[0].Cells[0].Value = Properties.Settings.Default.Areadesc;
+
+            gvAREA.Rows[0].Cells[1].Value = aValue;
+
+        }
+
         private void rbCircle_CheckedChanged(object sender, EventArgs e)
         {
-            tbCircle.Enabled = true;
-            tbPolygon.Enabled = false;
+            _areatype = AreaType.circle;
+            gvAREA.Columns[1].HeaderText = "circle";
         }
 
         private void rbPolygon_CheckedChanged(object sender, EventArgs e)
         {
-            tbCircle.Enabled = false;
-            tbPolygon.Enabled = true;
+            _areatype = AreaType.polygon;
+            gvAREA.Columns[1].HeaderText = "polygon";
+        }
+
+        private void rbGeocode_CheckedChanged(object sender, EventArgs e)
+        {
+            _areatype = AreaType.geocode;
+            gvAREA.Columns[1].HeaderText = "geocode";
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -101,11 +150,8 @@ namespace CAPMaker
             string onsettxt = cbOnset.Checked ? onset.toCapTimeString() : "";
 
             AddValue("onset", onsettxt, false, "", "onset", true);
-
             AddValue("expires", expires.toCapTimeString());
-
             AddValue("sendername", tbSenderName);
-
             AddValue("headline", tbHeadline);
 
             if (tbHeadline.Text.Length > 0)
@@ -113,12 +159,10 @@ namespace CAPMaker
 
             AddValue("description", tbDescription);
             AddValue("web", tbWeb, false);
-            AddValue("areadesc", tbAreadesc);
 
-            if (rbPolygon.Checked)
-                AddValue("area", tbPolygon , true, "Polygon", "polygon");
-            else
-                AddValue("area", tbCircle, true, "Circle", "circle");
+            var area = exportArea();
+            AddValue("area", area);
+            
 
             if (invalidString.Count > 0)
             {
@@ -140,11 +184,49 @@ namespace CAPMaker
 
                 if (result == DialogResult.OK)
                 {
-                    File.WriteAllText(sfdSave.FileName, cap);
+                    var _xml = cap.FormatXML();
+
+
+                    File.WriteAllText(sfdSave.FileName, _xml);
 
                     MessageBox.Show("完成存檔", "儲存檔案", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
+        }
+
+        string exportArea()
+        {
+            StringBuilder areaBuilder = new StringBuilder();
+            string _temp = "<area><areaDesc>{0}</areaDesc>{1}</area>";
+            string _subtemp = "";
+
+            switch (_areatype)
+            {
+                case AreaType.geocode:
+                    _subtemp = "<geocode><valueName>Taiwan_Geocode_103</valueName><value>{0}</value></geocode>";
+                    break;
+                case AreaType.circle:
+                    _subtemp = "<circle>{0}</circle>";
+                    break;
+                case AreaType.polygon:
+                    _subtemp = "<polygon>{0}</polygon>";
+                    break;
+                default:
+                    break;
+            }
+
+            for (int i = 0; i < gvAREA.Rows.Count; i++)
+            {
+                var desc = gvAREA[0, i].Value;
+                var value = gvAREA[1, i].Value;
+
+                if (desc == null || value == null) continue;
+
+                var result = string.Format(_temp, desc, string.Format(_subtemp, value));
+                areaBuilder.Append(result);
+            }
+
+            return areaBuilder.ToString();
         }
 
         Boolean checkReferences(string referenceText)
@@ -261,6 +343,22 @@ namespace CAPMaker
             }
 
             return result;
+        }
+
+        void AddValue(string name,string value)
+        {
+            string _name = "@" + name;
+
+            string _value = value;
+
+            if (_value.Length == 0)
+            {
+                invalidString.Add(name);
+            }
+            else
+            {
+                valueDicetonary.Add(_name, _value);
+            }
         }
 
         void AddValue(string name, object control, Boolean required = true, string aliasName="", string additionTag="", Boolean newLine=false)
@@ -392,6 +490,93 @@ namespace CAPMaker
 
             if (!enabled)
                 tbReference.Clear();
+        }
+
+        private void gvAREA_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            
+            if (e.ColumnIndex == 1)
+            {
+                var value = gvAREA[e.ColumnIndex, e.RowIndex].Value;
+
+                if (value != null)
+                {
+                    if (validAreaType(value.ToString()) == false)
+                    {
+                        MessageBox.Show("格式有錯，請檢查輸入的數值");
+                    }
+                }
+            }
+        }
+
+        Boolean validAreaType(string celltext)
+        {
+            switch (_areatype)
+            {
+                case AreaType.geocode:
+                    return celltext.IsGeocode();
+                case AreaType.circle:
+                    return celltext.IsCircle();
+                case AreaType.polygon:
+                    return celltext.IsPolygon();
+            }
+
+            return false;
+        }
+
+        private void btnImportCSV_Click(object sender, EventArgs e)
+        {
+
+            var result = dlgOpenCSV.ShowDialog();
+
+            if(result== DialogResult.OK)
+            {
+
+                csvSelector csdlg = new CAPMaker.csvSelector();
+
+                var dt = CsvHelperExtension.ReadFromCSV(dlgOpenCSV.FileName);
+
+                var columnName = dt.Columns.Cast<DataColumn>().Select(c => c.ColumnName);
+
+                csdlg.setColumns(columnName.ToArray());
+
+                var SelectorResult = csdlg.ShowDialog();
+
+                if(SelectorResult== DialogResult.OK)
+                {
+                    var _areadesc = csdlg.Field_areadesc;
+                    var _areatype = csdlg.Field_areatype;
+
+                    FillDataToGrid(dt, _areadesc, _areatype);
+                }
+
+            }
+
+        }
+
+        void FillDataToGrid(DataTable dt,string areadesc,string areatype)
+        {
+            gvAREA.Rows.Clear();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                var _areadescValue = row[areadesc] as string;
+                var _areatypeValue = row[areatype] as string;
+
+                if (validAreaType(_areatypeValue))
+                    gvAREA.Rows.Add(row[areadesc], row[areatype]);
+                else
+                {
+                    MessageBox.Show(string.Format("欄位 {0} 的「{1}」不符合CAP標準對 {2} 定義的格式，請修正後重新匯入。", areatype, _areatypeValue, this._areatype), "格式錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                }
+            }
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            gvAREA.Rows.Clear();
         }
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnImport = new System.Windows.Forms.Button();
@@ -41,8 +42,6 @@
             this.cbMsgType = new System.Windows.Forms.ComboBox();
             this.cbStatus = new System.Windows.Forms.ComboBox();
             this.dtpSentDate = new System.Windows.Forms.DateTimePicker();
-            this.tbSender = new System.Windows.Forms.TextBox();
-            this.tbIdentifier = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -57,9 +56,6 @@
             this.dtpOnsetDate = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.cbCategory = new System.Windows.Forms.ComboBox();
-            this.tbWeb = new System.Windows.Forms.TextBox();
-            this.tbDescription = new System.Windows.Forms.TextBox();
-            this.tbHeadline = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -67,7 +63,6 @@
             this.nudExpiresMinute = new System.Windows.Forms.NumericUpDown();
             this.nudExpiresHour = new System.Windows.Forms.NumericUpDown();
             this.nudEffectiveSecond = new System.Windows.Forms.NumericUpDown();
-            this.tbSenderName = new System.Windows.Forms.TextBox();
             this.nudEffectiveMinute = new System.Windows.Forms.NumericUpDown();
             this.label17 = new System.Windows.Forms.Label();
             this.nudEffectiveHour = new System.Windows.Forms.NumericUpDown();
@@ -81,26 +76,36 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.tbEvent = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.tbEventCode = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.rbCircle = new System.Windows.Forms.RadioButton();
-            this.tbCircle = new System.Windows.Forms.TextBox();
             this.rbPolygon = new System.Windows.Forms.RadioButton();
-            this.tbAreadesc = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.tbPolygon = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.sfdSave = new System.Windows.Forms.SaveFileDialog();
             this.ofdReference = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.rbGeocode = new System.Windows.Forms.RadioButton();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btnImportCSV = new System.Windows.Forms.Button();
+            this.gvAREA = new System.Windows.Forms.DataGridView();
+            this.areadesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.geocode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tTrigger = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tsmHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.dlgOpenCSV = new System.Windows.Forms.OpenFileDialog();
+            this.tbWeb = new System.Windows.Forms.TextBox();
+            this.tbDescription = new System.Windows.Forms.TextBox();
+            this.tbHeadline = new System.Windows.Forms.TextBox();
+            this.tbSenderName = new System.Windows.Forms.TextBox();
+            this.tbEvent = new System.Windows.Forms.TextBox();
+            this.tbEventCode = new System.Windows.Forms.TextBox();
+            this.tbSender = new System.Windows.Forms.TextBox();
+            this.tbIdentifier = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSentSecond)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSentMinute)).BeginInit();
@@ -115,7 +120,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudEffectiveSecond)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEffectiveMinute)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEffectiveHour)).BeginInit();
-            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvAREA)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -143,7 +149,7 @@
             this.groupBox1.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.groupBox1.Location = new System.Drawing.Point(12, 32);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(964, 147);
+            this.groupBox1.Size = new System.Drawing.Size(783, 147);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ALERT";
@@ -151,7 +157,7 @@
             // btnImport
             // 
             this.btnImport.Enabled = false;
-            this.btnImport.Location = new System.Drawing.Point(510, 100);
+            this.btnImport.Location = new System.Drawing.Point(397, 100);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(40, 23);
             this.btnImport.TabIndex = 13;
@@ -201,17 +207,17 @@
             // tbReference
             // 
             this.tbReference.Enabled = false;
-            this.tbReference.Location = new System.Drawing.Point(571, 78);
+            this.tbReference.Location = new System.Drawing.Point(458, 78);
             this.tbReference.Multiline = true;
             this.tbReference.Name = "tbReference";
-            this.tbReference.Size = new System.Drawing.Size(376, 54);
+            this.tbReference.Size = new System.Drawing.Size(293, 54);
             this.tbReference.TabIndex = 9;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label18.Location = new System.Drawing.Point(480, 80);
+            this.label18.Location = new System.Drawing.Point(367, 80);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(70, 17);
             this.label18.TabIndex = 12;
@@ -223,7 +229,7 @@
             // 
             this.lbScope.AutoSize = true;
             this.lbScope.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lbScope.Location = new System.Drawing.Point(568, 24);
+            this.lbScope.Location = new System.Drawing.Point(455, 24);
             this.lbScope.Name = "lbScope";
             this.lbScope.Size = new System.Drawing.Size(44, 17);
             this.lbScope.TabIndex = 11;
@@ -237,7 +243,7 @@
             "Alert",
             "Update",
             "Cancel"});
-            this.cbMsgType.Location = new System.Drawing.Point(571, 47);
+            this.cbMsgType.Location = new System.Drawing.Point(458, 47);
             this.cbMsgType.Name = "cbMsgType";
             this.cbMsgType.Size = new System.Drawing.Size(121, 24);
             this.cbMsgType.TabIndex = 8;
@@ -265,29 +271,11 @@
             this.dtpSentDate.Size = new System.Drawing.Size(105, 23);
             this.dtpSentDate.TabIndex = 3;
             // 
-            // tbSender
-            // 
-            this.tbSender.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "sender", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbSender.Location = new System.Drawing.Point(105, 55);
-            this.tbSender.Name = "tbSender";
-            this.tbSender.Size = new System.Drawing.Size(345, 23);
-            this.tbSender.TabIndex = 2;
-            this.tbSender.Text = global::CAPMaker.Properties.Settings.Default.Sender;
-            // 
-            // tbIdentifier
-            // 
-            this.tbIdentifier.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "identifier", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbIdentifier.Location = new System.Drawing.Point(105, 24);
-            this.tbIdentifier.Name = "tbIdentifier";
-            this.tbIdentifier.Size = new System.Drawing.Size(345, 23);
-            this.tbIdentifier.TabIndex = 1;
-            this.tbIdentifier.Text = global::CAPMaker.Properties.Settings.Default.Identifier;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label6.Location = new System.Drawing.Point(507, 24);
+            this.label6.Location = new System.Drawing.Point(394, 24);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 17);
             this.label6.TabIndex = 5;
@@ -298,7 +286,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label5.Location = new System.Drawing.Point(487, 50);
+            this.label5.Location = new System.Drawing.Point(374, 50);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 17);
             this.label5.TabIndex = 4;
@@ -392,7 +380,7 @@
             this.groupBox2.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.groupBox2.Location = new System.Drawing.Point(12, 185);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(964, 261);
+            this.groupBox2.Size = new System.Drawing.Size(783, 261);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "INFO";
@@ -400,7 +388,7 @@
             // cbOnset
             // 
             this.cbOnset.AutoSize = true;
-            this.cbOnset.Location = new System.Drawing.Point(88, 230);
+            this.cbOnset.Location = new System.Drawing.Point(86, 230);
             this.cbOnset.Name = "cbOnset";
             this.cbOnset.Size = new System.Drawing.Size(15, 14);
             this.cbOnset.TabIndex = 36;
@@ -464,7 +452,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label8.Location = new System.Drawing.Point(26, 229);
+            this.label8.Location = new System.Drawing.Point(41, 227);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(42, 17);
             this.label8.TabIndex = 35;
@@ -492,41 +480,12 @@
             this.cbCategory.Size = new System.Drawing.Size(152, 24);
             this.cbCategory.TabIndex = 14;
             // 
-            // tbWeb
-            // 
-            this.tbWeb.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Web", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbWeb.Location = new System.Drawing.Point(571, 226);
-            this.tbWeb.Name = "tbWeb";
-            this.tbWeb.Size = new System.Drawing.Size(376, 23);
-            this.tbWeb.TabIndex = 27;
-            this.tbWeb.Text = global::CAPMaker.Properties.Settings.Default.Web;
-            // 
-            // tbDescription
-            // 
-            this.tbDescription.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Description", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbDescription.Location = new System.Drawing.Point(571, 110);
-            this.tbDescription.Multiline = true;
-            this.tbDescription.Name = "tbDescription";
-            this.tbDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbDescription.Size = new System.Drawing.Size(376, 110);
-            this.tbDescription.TabIndex = 26;
-            this.tbDescription.Text = global::CAPMaker.Properties.Settings.Default.Description;
-            // 
-            // tbHeadline
-            // 
-            this.tbHeadline.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Headline", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbHeadline.Location = new System.Drawing.Point(571, 81);
-            this.tbHeadline.Name = "tbHeadline";
-            this.tbHeadline.Size = new System.Drawing.Size(376, 23);
-            this.tbHeadline.TabIndex = 25;
-            this.tbHeadline.Text = global::CAPMaker.Properties.Settings.Default.Headline;
-            // 
             // label22
             // 
             this.label22.AutoSize = true;
             this.label22.BackColor = System.Drawing.Color.Transparent;
             this.label22.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label22.Location = new System.Drawing.Point(517, 228);
+            this.label22.Location = new System.Drawing.Point(403, 202);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(33, 17);
             this.label22.TabIndex = 30;
@@ -538,7 +497,7 @@
             this.label21.AutoSize = true;
             this.label21.BackColor = System.Drawing.Color.Transparent;
             this.label21.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label21.Location = new System.Drawing.Point(475, 112);
+            this.label21.Location = new System.Drawing.Point(362, 111);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(75, 17);
             this.label21.TabIndex = 29;
@@ -550,7 +509,7 @@
             this.label20.AutoSize = true;
             this.label20.BackColor = System.Drawing.Color.Transparent;
             this.label20.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label20.Location = new System.Drawing.Point(491, 83);
+            this.label20.Location = new System.Drawing.Point(378, 82);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(59, 17);
             this.label20.TabIndex = 28;
@@ -559,7 +518,7 @@
             // 
             // nudExpiresSecond
             // 
-            this.nudExpiresSecond.Location = new System.Drawing.Point(776, 17);
+            this.nudExpiresSecond.Location = new System.Drawing.Point(663, 16);
             this.nudExpiresSecond.Maximum = new decimal(new int[] {
             59,
             0,
@@ -572,7 +531,7 @@
             // 
             // nudExpiresMinute
             // 
-            this.nudExpiresMinute.Location = new System.Drawing.Point(729, 17);
+            this.nudExpiresMinute.Location = new System.Drawing.Point(616, 16);
             this.nudExpiresMinute.Maximum = new decimal(new int[] {
             59,
             0,
@@ -585,7 +544,7 @@
             // 
             // nudExpiresHour
             // 
-            this.nudExpiresHour.Location = new System.Drawing.Point(682, 17);
+            this.nudExpiresHour.Location = new System.Drawing.Point(569, 16);
             this.nudExpiresHour.Maximum = new decimal(new int[] {
             23,
             0,
@@ -609,15 +568,6 @@
             this.nudEffectiveSecond.TabIndex = 19;
             this.nudEffectiveSecond.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // tbSenderName
-            // 
-            this.tbSenderName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "SenderName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbSenderName.Location = new System.Drawing.Point(571, 50);
-            this.tbSenderName.Name = "tbSenderName";
-            this.tbSenderName.Size = new System.Drawing.Size(376, 23);
-            this.tbSenderName.TabIndex = 24;
-            this.tbSenderName.Text = global::CAPMaker.Properties.Settings.Default.SenderName;
-            // 
             // nudEffectiveMinute
             // 
             this.nudEffectiveMinute.Location = new System.Drawing.Point(263, 197);
@@ -636,7 +586,7 @@
             this.label17.AutoSize = true;
             this.label17.BackColor = System.Drawing.Color.Transparent;
             this.label17.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label17.Location = new System.Drawing.Point(467, 52);
+            this.label17.Location = new System.Drawing.Point(354, 51);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(83, 17);
             this.label17.TabIndex = 23;
@@ -660,7 +610,7 @@
             // 
             this.dtpExpiresDate.CustomFormat = "yyyy/MM/dd HH:mm:ss";
             this.dtpExpiresDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpExpiresDate.Location = new System.Drawing.Point(571, 17);
+            this.dtpExpiresDate.Location = new System.Drawing.Point(458, 16);
             this.dtpExpiresDate.Name = "dtpExpiresDate";
             this.dtpExpiresDate.Size = new System.Drawing.Size(105, 23);
             this.dtpExpiresDate.TabIndex = 20;
@@ -669,7 +619,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label16.Location = new System.Drawing.Point(500, 21);
+            this.label16.Location = new System.Drawing.Point(387, 20);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(50, 17);
             this.label16.TabIndex = 21;
@@ -774,15 +724,6 @@
             this.label12.Text = "urgency";
             this.toolTip1.SetToolTip(this.label12, "urgency - 緊急程度\t\r\n描述事件之緊急程度\r\n詳共通示警協議標準附錄表18緊急程度代碼表");
             // 
-            // tbEvent
-            // 
-            this.tbEvent.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Event", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbEvent.Location = new System.Drawing.Point(105, 53);
-            this.tbEvent.Name = "tbEvent";
-            this.tbEvent.Size = new System.Drawing.Size(208, 23);
-            this.tbEvent.TabIndex = 11;
-            this.tbEvent.Text = global::CAPMaker.Properties.Settings.Default.Event;
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -794,15 +735,6 @@
             this.label11.Text = "eventcode";
             this.toolTip1.SetToolTip(this.label11, "eventCode - 事件類型代碼\r\n事件類型(event)所搭配之事件類型代碼\r\n詳https://alerts.ncdr.nat.gov.tw/Docume" +
         "nt/國內現有事件分類事件名稱與事件代碼對照表.pdf");
-            // 
-            // tbEventCode
-            // 
-            this.tbEventCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "EventCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbEventCode.Location = new System.Drawing.Point(105, 82);
-            this.tbEventCode.Name = "tbEventCode";
-            this.tbEventCode.Size = new System.Drawing.Size(208, 23);
-            this.tbEventCode.TabIndex = 12;
-            this.tbEventCode.Text = global::CAPMaker.Properties.Settings.Default.EventCode;
             // 
             // label10
             // 
@@ -820,7 +752,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label7.Location = new System.Drawing.Point(23, 26);
+            this.label7.Location = new System.Drawing.Point(24, 26);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(61, 17);
             this.label7.TabIndex = 1;
@@ -828,53 +760,24 @@
             this.toolTip1.SetToolTip(this.label7, "category - 事件分類\r\n示警事件之分類\r\n詳https://alerts.ncdr.nat.gov.tw/Document/國內現有事件分類事件名稱與事" +
         "件代碼對照表.pdf");
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.rbCircle);
-            this.groupBox3.Controls.Add(this.tbCircle);
-            this.groupBox3.Controls.Add(this.rbPolygon);
-            this.groupBox3.Controls.Add(this.tbAreadesc);
-            this.groupBox3.Controls.Add(this.label26);
-            this.groupBox3.Controls.Add(this.tbPolygon);
-            this.groupBox3.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox3.Location = new System.Drawing.Point(12, 452);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(964, 126);
-            this.groupBox3.TabIndex = 14;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "AREA";
-            // 
             // rbCircle
             // 
             this.rbCircle.AutoSize = true;
-            this.rbCircle.Checked = true;
-            this.rbCircle.Location = new System.Drawing.Point(27, 54);
+            this.rbCircle.Location = new System.Drawing.Point(179, 51);
             this.rbCircle.Name = "rbCircle";
-            this.rbCircle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.rbCircle.Size = new System.Drawing.Size(57, 20);
+            this.rbCircle.Size = new System.Drawing.Size(51, 16);
             this.rbCircle.TabIndex = 31;
-            this.rbCircle.TabStop = true;
             this.rbCircle.Text = "Circle";
             this.toolTip1.SetToolTip(this.rbCircle, "circle - 影響區域為圓形\r\n影響區域之中心點坐標及半徑\r\n中心點使用坐標為WGS84，使用空白區隔中心點與半徑(單位為km)");
             this.rbCircle.UseVisualStyleBackColor = true;
             this.rbCircle.CheckedChanged += new System.EventHandler(this.rbCircle_CheckedChanged);
             // 
-            // tbCircle
-            // 
-            this.tbCircle.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Circle", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbCircle.Location = new System.Drawing.Point(105, 53);
-            this.tbCircle.Name = "tbCircle";
-            this.tbCircle.Size = new System.Drawing.Size(842, 23);
-            this.tbCircle.TabIndex = 32;
-            this.tbCircle.Text = global::CAPMaker.Properties.Settings.Default.Circle;
-            // 
             // rbPolygon
             // 
             this.rbPolygon.AutoSize = true;
-            this.rbPolygon.Location = new System.Drawing.Point(11, 83);
+            this.rbPolygon.Location = new System.Drawing.Point(239, 50);
             this.rbPolygon.Name = "rbPolygon";
-            this.rbPolygon.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.rbPolygon.Size = new System.Drawing.Size(73, 20);
+            this.rbPolygon.Size = new System.Drawing.Size(62, 16);
             this.rbPolygon.TabIndex = 29;
             this.rbPolygon.Text = "Polygon";
             this.rbPolygon.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -883,40 +786,9 @@
             this.rbPolygon.UseVisualStyleBackColor = true;
             this.rbPolygon.CheckedChanged += new System.EventHandler(this.rbPolygon_CheckedChanged);
             // 
-            // tbAreadesc
-            // 
-            this.tbAreadesc.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Areadesc", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbAreadesc.Location = new System.Drawing.Point(105, 24);
-            this.tbAreadesc.Name = "tbAreadesc";
-            this.tbAreadesc.Size = new System.Drawing.Size(345, 23);
-            this.tbAreadesc.TabIndex = 28;
-            this.tbAreadesc.Text = global::CAPMaker.Properties.Settings.Default.Areadesc;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label26.Location = new System.Drawing.Point(23, 28);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(61, 17);
-            this.label26.TabIndex = 0;
-            this.label26.Text = "areadesc";
-            this.toolTip1.SetToolTip(this.label26, "areaDesc - 影響區域描述\r\n描述示警之影響區域\r\n描述影響區域，其描述必須能夠含括<polygon>和<circle>以及<geocode>所描述的區域" +
-        "，但不一定非要定義在區域代碼表中");
-            // 
-            // tbPolygon
-            // 
-            this.tbPolygon.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Polygon", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbPolygon.Enabled = false;
-            this.tbPolygon.Location = new System.Drawing.Point(105, 82);
-            this.tbPolygon.Name = "tbPolygon";
-            this.tbPolygon.Size = new System.Drawing.Size(842, 23);
-            this.tbPolygon.TabIndex = 30;
-            this.tbPolygon.Text = global::CAPMaker.Properties.Settings.Default.Polygon;
-            // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(869, 584);
+            this.btnSave.Location = new System.Drawing.Point(1069, 452);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(107, 23);
             this.btnSave.TabIndex = 33;
@@ -946,6 +818,99 @@
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip1.ToolTipTitle = "欄位說明";
             // 
+            // rbGeocode
+            // 
+            this.rbGeocode.AutoSize = true;
+            this.rbGeocode.Checked = true;
+            this.rbGeocode.Location = new System.Drawing.Point(103, 51);
+            this.rbGeocode.Name = "rbGeocode";
+            this.rbGeocode.Size = new System.Drawing.Size(64, 16);
+            this.rbGeocode.TabIndex = 32;
+            this.rbGeocode.TabStop = true;
+            this.rbGeocode.Text = "Geocode";
+            this.toolTip1.SetToolTip(this.rbGeocode, "geocode - 影響區域為區域代碼\r\n影響區域之 區域代碼\r\n建議採用行政院主計總處(DGBAS) 公告之「中華民國行政區域及村里代\r\n碼」");
+            this.rbGeocode.UseVisualStyleBackColor = true;
+            this.rbGeocode.CheckedChanged += new System.EventHandler(this.rbGeocode_CheckedChanged);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.button2);
+            this.groupBox4.Controls.Add(this.label9);
+            this.groupBox4.Controls.Add(this.btnImportCSV);
+            this.groupBox4.Controls.Add(this.rbGeocode);
+            this.groupBox4.Controls.Add(this.rbCircle);
+            this.groupBox4.Controls.Add(this.rbPolygon);
+            this.groupBox4.Controls.Add(this.gvAREA);
+            this.groupBox4.Location = new System.Drawing.Point(801, 32);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(375, 414);
+            this.groupBox4.TabIndex = 35;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "AREA";
+            this.toolTip1.SetToolTip(this.groupBox4, "示警影響區域");
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(307, 20);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(62, 23);
+            this.button2.TabIndex = 37;
+            this.button2.Text = "清空";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label9.Location = new System.Drawing.Point(6, 50);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(86, 17);
+            this.label9.TabIndex = 33;
+            this.label9.Text = "影響區域類型";
+            // 
+            // btnImportCSV
+            // 
+            this.btnImportCSV.Location = new System.Drawing.Point(6, 20);
+            this.btnImportCSV.Name = "btnImportCSV";
+            this.btnImportCSV.Size = new System.Drawing.Size(81, 23);
+            this.btnImportCSV.TabIndex = 36;
+            this.btnImportCSV.Text = "匯入CSV";
+            this.btnImportCSV.UseVisualStyleBackColor = true;
+            this.btnImportCSV.Click += new System.EventHandler(this.btnImportCSV_Click);
+            // 
+            // gvAREA
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("新細明體", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gvAREA.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.gvAREA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvAREA.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.areadesc,
+            this.geocode});
+            this.gvAREA.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.gvAREA.Location = new System.Drawing.Point(6, 75);
+            this.gvAREA.Name = "gvAREA";
+            this.gvAREA.RowTemplate.Height = 24;
+            this.gvAREA.Size = new System.Drawing.Size(363, 333);
+            this.gvAREA.TabIndex = 0;
+            this.gvAREA.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvAREA_CellEndEdit);
+            // 
+            // areadesc
+            // 
+            this.areadesc.HeaderText = "areadesc";
+            this.areadesc.Name = "areadesc";
+            // 
+            // geocode
+            // 
+            this.geocode.HeaderText = "geocode";
+            this.geocode.Name = "geocode";
+            // 
             // tTrigger
             // 
             this.tTrigger.Tick += new System.EventHandler(this.tTrigger_Tick);
@@ -958,7 +923,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.menuStrip1.Size = new System.Drawing.Size(989, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1188, 24);
             this.menuStrip1.TabIndex = 34;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -976,13 +941,93 @@
             this.tsmAbout.Text = "關於";
             this.tsmAbout.Click += new System.EventHandler(this.tsmAbout_Click);
             // 
+            // dlgOpenCSV
+            // 
+            this.dlgOpenCSV.FileName = "openFileDialog1";
+            this.dlgOpenCSV.Filter = "CSV檔案|*.csv";
+            this.dlgOpenCSV.Title = "請選擇欲匯入的CSV檔案";
+            // 
+            // tbWeb
+            // 
+            this.tbWeb.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Web", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbWeb.Location = new System.Drawing.Point(458, 200);
+            this.tbWeb.Name = "tbWeb";
+            this.tbWeb.Size = new System.Drawing.Size(313, 23);
+            this.tbWeb.TabIndex = 27;
+            this.tbWeb.Text = global::CAPMaker.Properties.Settings.Default.Web;
+            // 
+            // tbDescription
+            // 
+            this.tbDescription.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Description", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbDescription.Location = new System.Drawing.Point(458, 109);
+            this.tbDescription.Multiline = true;
+            this.tbDescription.Name = "tbDescription";
+            this.tbDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbDescription.Size = new System.Drawing.Size(313, 83);
+            this.tbDescription.TabIndex = 26;
+            this.tbDescription.Text = global::CAPMaker.Properties.Settings.Default.Description;
+            // 
+            // tbHeadline
+            // 
+            this.tbHeadline.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Headline", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbHeadline.Location = new System.Drawing.Point(458, 80);
+            this.tbHeadline.Name = "tbHeadline";
+            this.tbHeadline.Size = new System.Drawing.Size(313, 23);
+            this.tbHeadline.TabIndex = 25;
+            this.tbHeadline.Text = global::CAPMaker.Properties.Settings.Default.Headline;
+            // 
+            // tbSenderName
+            // 
+            this.tbSenderName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "SenderName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbSenderName.Location = new System.Drawing.Point(458, 49);
+            this.tbSenderName.Name = "tbSenderName";
+            this.tbSenderName.Size = new System.Drawing.Size(313, 23);
+            this.tbSenderName.TabIndex = 24;
+            this.tbSenderName.Text = global::CAPMaker.Properties.Settings.Default.SenderName;
+            // 
+            // tbEvent
+            // 
+            this.tbEvent.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Event", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbEvent.Location = new System.Drawing.Point(105, 53);
+            this.tbEvent.Name = "tbEvent";
+            this.tbEvent.Size = new System.Drawing.Size(130, 23);
+            this.tbEvent.TabIndex = 11;
+            this.tbEvent.Text = global::CAPMaker.Properties.Settings.Default.Event;
+            // 
+            // tbEventCode
+            // 
+            this.tbEventCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "EventCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbEventCode.Location = new System.Drawing.Point(105, 82);
+            this.tbEventCode.Name = "tbEventCode";
+            this.tbEventCode.Size = new System.Drawing.Size(130, 23);
+            this.tbEventCode.TabIndex = 12;
+            this.tbEventCode.Text = global::CAPMaker.Properties.Settings.Default.EventCode;
+            // 
+            // tbSender
+            // 
+            this.tbSender.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "sender", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbSender.Location = new System.Drawing.Point(105, 55);
+            this.tbSender.Name = "tbSender";
+            this.tbSender.Size = new System.Drawing.Size(246, 23);
+            this.tbSender.TabIndex = 2;
+            this.tbSender.Text = global::CAPMaker.Properties.Settings.Default.Sender;
+            // 
+            // tbIdentifier
+            // 
+            this.tbIdentifier.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "identifier", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbIdentifier.Location = new System.Drawing.Point(105, 24);
+            this.tbIdentifier.Name = "tbIdentifier";
+            this.tbIdentifier.Size = new System.Drawing.Size(246, 23);
+            this.tbIdentifier.TabIndex = 1;
+            this.tbIdentifier.Text = global::CAPMaker.Properties.Settings.Default.Identifier;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(989, 618);
+            this.ClientSize = new System.Drawing.Size(1188, 485);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
@@ -990,7 +1035,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
-            this.Text = "CAP產生器";
+            this.Text = "CAP產生器 2.0";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSentSecond)).EndInit();
@@ -1007,8 +1052,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudEffectiveSecond)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEffectiveMinute)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudEffectiveHour)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvAREA)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -1051,11 +1097,6 @@
         private System.Windows.Forms.TextBox tbEventCode;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox tbCircle;
-        private System.Windows.Forms.TextBox tbPolygon;
-        private System.Windows.Forms.TextBox tbAreadesc;
-        private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.NumericUpDown nudSentSecond;
         private System.Windows.Forms.NumericUpDown nudSentMinute;
@@ -1089,6 +1130,15 @@
         private System.Windows.Forms.NumericUpDown nudOnsetHour;
         private System.Windows.Forms.DateTimePicker dtpOnsetDate;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.DataGridView gvAREA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn areadesc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn geocode;
+        private System.Windows.Forms.RadioButton rbGeocode;
+        private System.Windows.Forms.Button btnImportCSV;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.OpenFileDialog dlgOpenCSV;
     }
 }
 

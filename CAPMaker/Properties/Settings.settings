@@ -36,7 +36,13 @@
       <Value Profile="(Default)">38.47,-120.14 38.34,-119.95 38.52,-119.74 38.62,-119.89 38.47,-120.14</Value>
     </Setting>
     <Setting Name="IdentifierFormat" Type="System.String" Scope="User">
-      <Value Profile="(Default)">{0}_{1:yyyyMMHHmmss}</Value>
+      <Value Profile="(Default)">{0}_{1:yyyyMMddHHmmss}</Value>
+    </Setting>
+    <Setting Name="Areatype" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Circle</Value>
+    </Setting>
+    <Setting Name="Geocode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">63</Value>
     </Setting>
   </Settings>
 </SettingsFile>

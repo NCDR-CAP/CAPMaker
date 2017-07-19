@@ -27,10 +27,7 @@
       <valueName>alert_title</valueName>
       <value>{@alert_title}</value>
     </parameter>
-    <area>
-      <areaDesc>{@areadesc}</areaDesc>
       {@area}
-    </area>
   </info>
 </alert>
 

@@ -44,6 +44,40 @@ namespace CAPMaker
             return d.Ticks < td.Ticks;
         }
 
+        public static Boolean IsGeocode(this string s)
+        {
+            Regex regex = new Regex(@"^[0-9]{2,5}$");
+
+            return regex.IsMatch(s);
+        }
+
+        public static Boolean IsCircle(this string s)
+        {
+            Regex regex = new Regex(@"^(\d*\.\d*),(\d*\.\d*)\ (([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[0-9][0-9]*))$");
+
+            return regex.IsMatch(s);
+        }
+
+        public static Boolean IsPolygon(this string s)
+        {
+            bool result = true;
+
+            Regex regex = new Regex(@"^(\d*\.\d*),(\d*\.\d*)$");
+
+            var points = s.Split(new char[] { ' ' });
+
+            foreach (var pt in points)
+            {
+                if (!regex.IsMatch(pt))
+                {
+                    result = false;
+                    break;
+                }
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// 按名稱查找控件
         /// </summary>
@@ -76,6 +110,31 @@ namespace CAPMaker
             var node = xml.Descendants().Where(n => n.Name.LocalName == TagName);
 
             return node.Any() ? node.First().Value : "";
+        }
+
+
+        /// <summary>
+        /// 格式化XML
+        /// </summary>
+        /// <param name="xml"></param>
+        /// <returns></returns>
+        public static string FormatXML(this string xml)
+        {
+            string result = xml;
+
+            try
+            {
+                var doc = XDocument.Parse(xml);
+
+                result = doc.ToString();
+
+            }
+            catch (Exception)
+            {
+            }
+
+            return result;
+
         }
     }
 }

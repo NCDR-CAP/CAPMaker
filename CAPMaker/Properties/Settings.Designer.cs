@@ -157,13 +157,37 @@ namespace CAPMaker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{0}_{1:yyyyMMHHmmss}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{0}_{1:yyyyMMddHHmmss}")]
         public string IdentifierFormat {
             get {
                 return ((string)(this["IdentifierFormat"]));
             }
             set {
                 this["IdentifierFormat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Circle")]
+        public string Areatype {
+            get {
+                return ((string)(this["Areatype"]));
+            }
+            set {
+                this["Areatype"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("63")]
+        public string Geocode {
+            get {
+                return ((string)(this["Geocode"]));
+            }
+            set {
+                this["Geocode"] = value;
             }
         }
     }
