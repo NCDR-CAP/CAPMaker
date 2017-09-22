@@ -42,6 +42,8 @@
             this.cbMsgType = new System.Windows.Forms.ComboBox();
             this.cbStatus = new System.Windows.Forms.ComboBox();
             this.dtpSentDate = new System.Windows.Forms.DateTimePicker();
+            this.tbSender = new System.Windows.Forms.TextBox();
+            this.tbIdentifier = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -56,6 +58,9 @@
             this.dtpOnsetDate = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.cbCategory = new System.Windows.Forms.ComboBox();
+            this.tbWeb = new System.Windows.Forms.TextBox();
+            this.tbDescription = new System.Windows.Forms.TextBox();
+            this.tbHeadline = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -63,6 +68,7 @@
             this.nudExpiresMinute = new System.Windows.Forms.NumericUpDown();
             this.nudExpiresHour = new System.Windows.Forms.NumericUpDown();
             this.nudEffectiveSecond = new System.Windows.Forms.NumericUpDown();
+            this.tbSenderName = new System.Windows.Forms.TextBox();
             this.nudEffectiveMinute = new System.Windows.Forms.NumericUpDown();
             this.label17 = new System.Windows.Forms.Label();
             this.nudEffectiveHour = new System.Windows.Forms.NumericUpDown();
@@ -76,7 +82,9 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.tbEvent = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.tbEventCode = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.rbCircle = new System.Windows.Forms.RadioButton();
@@ -98,14 +106,6 @@
             this.tsmHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.dlgOpenCSV = new System.Windows.Forms.OpenFileDialog();
-            this.tbWeb = new System.Windows.Forms.TextBox();
-            this.tbDescription = new System.Windows.Forms.TextBox();
-            this.tbHeadline = new System.Windows.Forms.TextBox();
-            this.tbSenderName = new System.Windows.Forms.TextBox();
-            this.tbEvent = new System.Windows.Forms.TextBox();
-            this.tbEventCode = new System.Windows.Forms.TextBox();
-            this.tbSender = new System.Windows.Forms.TextBox();
-            this.tbIdentifier = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudSentSecond)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSentMinute)).BeginInit();
@@ -270,6 +270,24 @@
             this.dtpSentDate.Name = "dtpSentDate";
             this.dtpSentDate.Size = new System.Drawing.Size(105, 23);
             this.dtpSentDate.TabIndex = 3;
+            // 
+            // tbSender
+            // 
+            this.tbSender.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "sender", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbSender.Location = new System.Drawing.Point(105, 55);
+            this.tbSender.Name = "tbSender";
+            this.tbSender.Size = new System.Drawing.Size(246, 23);
+            this.tbSender.TabIndex = 2;
+            this.tbSender.Text = global::CAPMaker.Properties.Settings.Default.Sender;
+            // 
+            // tbIdentifier
+            // 
+            this.tbIdentifier.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "identifier", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbIdentifier.Location = new System.Drawing.Point(105, 24);
+            this.tbIdentifier.Name = "tbIdentifier";
+            this.tbIdentifier.Size = new System.Drawing.Size(246, 23);
+            this.tbIdentifier.TabIndex = 1;
+            this.tbIdentifier.Text = global::CAPMaker.Properties.Settings.Default.Identifier;
             // 
             // label6
             // 
@@ -461,6 +479,7 @@
             // 
             // cbCategory
             // 
+            this.cbCategory.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Category", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCategory.FormattingEnabled = true;
             this.cbCategory.Items.AddRange(new object[] {
@@ -479,6 +498,36 @@
             this.cbCategory.Name = "cbCategory";
             this.cbCategory.Size = new System.Drawing.Size(152, 24);
             this.cbCategory.TabIndex = 14;
+            this.cbCategory.Text = global::CAPMaker.Properties.Settings.Default.Category;
+            // 
+            // tbWeb
+            // 
+            this.tbWeb.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Web", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbWeb.Location = new System.Drawing.Point(458, 200);
+            this.tbWeb.Name = "tbWeb";
+            this.tbWeb.Size = new System.Drawing.Size(313, 23);
+            this.tbWeb.TabIndex = 27;
+            this.tbWeb.Text = global::CAPMaker.Properties.Settings.Default.Web;
+            // 
+            // tbDescription
+            // 
+            this.tbDescription.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Description", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbDescription.Location = new System.Drawing.Point(458, 109);
+            this.tbDescription.Multiline = true;
+            this.tbDescription.Name = "tbDescription";
+            this.tbDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbDescription.Size = new System.Drawing.Size(313, 83);
+            this.tbDescription.TabIndex = 26;
+            this.tbDescription.Text = global::CAPMaker.Properties.Settings.Default.Description;
+            // 
+            // tbHeadline
+            // 
+            this.tbHeadline.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Headline", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbHeadline.Location = new System.Drawing.Point(458, 80);
+            this.tbHeadline.Name = "tbHeadline";
+            this.tbHeadline.Size = new System.Drawing.Size(313, 23);
+            this.tbHeadline.TabIndex = 25;
+            this.tbHeadline.Text = global::CAPMaker.Properties.Settings.Default.Headline;
             // 
             // label22
             // 
@@ -567,6 +616,15 @@
             this.nudEffectiveSecond.Size = new System.Drawing.Size(41, 23);
             this.nudEffectiveSecond.TabIndex = 19;
             this.nudEffectiveSecond.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbSenderName
+            // 
+            this.tbSenderName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "SenderName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbSenderName.Location = new System.Drawing.Point(458, 49);
+            this.tbSenderName.Name = "tbSenderName";
+            this.tbSenderName.Size = new System.Drawing.Size(313, 23);
+            this.tbSenderName.TabIndex = 24;
+            this.tbSenderName.Text = global::CAPMaker.Properties.Settings.Default.SenderName;
             // 
             // nudEffectiveMinute
             // 
@@ -724,6 +782,15 @@
             this.label12.Text = "urgency";
             this.toolTip1.SetToolTip(this.label12, "urgency - 緊急程度\t\r\n描述事件之緊急程度\r\n詳共通示警協議標準附錄表18緊急程度代碼表");
             // 
+            // tbEvent
+            // 
+            this.tbEvent.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Event", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbEvent.Location = new System.Drawing.Point(105, 53);
+            this.tbEvent.Name = "tbEvent";
+            this.tbEvent.Size = new System.Drawing.Size(130, 23);
+            this.tbEvent.TabIndex = 11;
+            this.tbEvent.Text = global::CAPMaker.Properties.Settings.Default.Event;
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -735,6 +802,15 @@
             this.label11.Text = "eventcode";
             this.toolTip1.SetToolTip(this.label11, "eventCode - 事件類型代碼\r\n事件類型(event)所搭配之事件類型代碼\r\n詳https://alerts.ncdr.nat.gov.tw/Docume" +
         "nt/國內現有事件分類事件名稱與事件代碼對照表.pdf");
+            // 
+            // tbEventCode
+            // 
+            this.tbEventCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "EventCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tbEventCode.Location = new System.Drawing.Point(105, 82);
+            this.tbEventCode.Name = "tbEventCode";
+            this.tbEventCode.Size = new System.Drawing.Size(130, 23);
+            this.tbEventCode.TabIndex = 12;
+            this.tbEventCode.Text = global::CAPMaker.Properties.Settings.Default.EventCode;
             // 
             // label10
             // 
@@ -946,80 +1022,6 @@
             this.dlgOpenCSV.FileName = "openFileDialog1";
             this.dlgOpenCSV.Filter = "CSV檔案|*.csv";
             this.dlgOpenCSV.Title = "請選擇欲匯入的CSV檔案";
-            // 
-            // tbWeb
-            // 
-            this.tbWeb.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Web", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbWeb.Location = new System.Drawing.Point(458, 200);
-            this.tbWeb.Name = "tbWeb";
-            this.tbWeb.Size = new System.Drawing.Size(313, 23);
-            this.tbWeb.TabIndex = 27;
-            this.tbWeb.Text = global::CAPMaker.Properties.Settings.Default.Web;
-            // 
-            // tbDescription
-            // 
-            this.tbDescription.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Description", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbDescription.Location = new System.Drawing.Point(458, 109);
-            this.tbDescription.Multiline = true;
-            this.tbDescription.Name = "tbDescription";
-            this.tbDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbDescription.Size = new System.Drawing.Size(313, 83);
-            this.tbDescription.TabIndex = 26;
-            this.tbDescription.Text = global::CAPMaker.Properties.Settings.Default.Description;
-            // 
-            // tbHeadline
-            // 
-            this.tbHeadline.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Headline", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbHeadline.Location = new System.Drawing.Point(458, 80);
-            this.tbHeadline.Name = "tbHeadline";
-            this.tbHeadline.Size = new System.Drawing.Size(313, 23);
-            this.tbHeadline.TabIndex = 25;
-            this.tbHeadline.Text = global::CAPMaker.Properties.Settings.Default.Headline;
-            // 
-            // tbSenderName
-            // 
-            this.tbSenderName.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "SenderName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbSenderName.Location = new System.Drawing.Point(458, 49);
-            this.tbSenderName.Name = "tbSenderName";
-            this.tbSenderName.Size = new System.Drawing.Size(313, 23);
-            this.tbSenderName.TabIndex = 24;
-            this.tbSenderName.Text = global::CAPMaker.Properties.Settings.Default.SenderName;
-            // 
-            // tbEvent
-            // 
-            this.tbEvent.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Event", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbEvent.Location = new System.Drawing.Point(105, 53);
-            this.tbEvent.Name = "tbEvent";
-            this.tbEvent.Size = new System.Drawing.Size(130, 23);
-            this.tbEvent.TabIndex = 11;
-            this.tbEvent.Text = global::CAPMaker.Properties.Settings.Default.Event;
-            // 
-            // tbEventCode
-            // 
-            this.tbEventCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "EventCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbEventCode.Location = new System.Drawing.Point(105, 82);
-            this.tbEventCode.Name = "tbEventCode";
-            this.tbEventCode.Size = new System.Drawing.Size(130, 23);
-            this.tbEventCode.TabIndex = 12;
-            this.tbEventCode.Text = global::CAPMaker.Properties.Settings.Default.EventCode;
-            // 
-            // tbSender
-            // 
-            this.tbSender.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "sender", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbSender.Location = new System.Drawing.Point(105, 55);
-            this.tbSender.Name = "tbSender";
-            this.tbSender.Size = new System.Drawing.Size(246, 23);
-            this.tbSender.TabIndex = 2;
-            this.tbSender.Text = global::CAPMaker.Properties.Settings.Default.Sender;
-            // 
-            // tbIdentifier
-            // 
-            this.tbIdentifier.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "identifier", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tbIdentifier.Location = new System.Drawing.Point(105, 24);
-            this.tbIdentifier.Name = "tbIdentifier";
-            this.tbIdentifier.Size = new System.Drawing.Size(246, 23);
-            this.tbIdentifier.TabIndex = 1;
-            this.tbIdentifier.Text = global::CAPMaker.Properties.Settings.Default.Identifier;
             // 
             // Main
             // 
