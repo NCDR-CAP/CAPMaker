@@ -46,7 +46,22 @@ namespace CAPMaker.Properties {
                 this["Sender"] = value;
             }
         }
-        
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Infra")]
+        public string Category
+        {
+            get
+            {
+                return ((string)(this["Category"]));
+            }
+            set
+            {
+                this["Category"] = value;
+            }
+        }
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("事件類型名稱")]
@@ -70,7 +85,52 @@ namespace CAPMaker.Properties {
                 this["EventCode"] = value;
             }
         }
-        
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Immediate")]
+        public string Urgency
+        {
+            get
+            {
+                return ((string)(this["Urgency"]));
+            }
+            set
+            {
+                this["Urgency"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Extreme")]
+        public string Severity
+        {
+            get
+            {
+                return ((string)(this["Severity"]));
+            }
+            set
+            {
+                this["Severity"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Observed")]
+        public string Certainty
+        {
+            get
+            {
+                return ((string)(this["Certainty"]));
+            }
+            set
+            {
+                this["Certainty"] = value;
+            }
+        }
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("發送者名稱")]
@@ -191,16 +251,6 @@ namespace CAPMaker.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Category {
-            get {
-                return ((string)(this["Category"]));
-            }
-            set {
-                this["Category"] = value;
-            }
-        }
+        
     }
 }

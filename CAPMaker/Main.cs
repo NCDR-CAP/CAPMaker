@@ -177,8 +177,8 @@ namespace CAPMaker
 
                 var cap = CapTemplate.StringFormat(valueDicetonary);
 
-
-                sfdSave.FileName = string.Format("{0}_{1}.cap", tbEventCode.Text, sent.ToString("yyyyMMddhhmm"));
+                //設定要輸出的欄位名稱
+                sfdSave.FileName = string.Format("{0}.cap",tbIdentifier.Text);
 
                 var result = sfdSave.ShowDialog();
 

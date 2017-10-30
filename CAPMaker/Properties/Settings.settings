@@ -45,7 +45,16 @@
       <Value Profile="(Default)">63</Value>
     </Setting>
     <Setting Name="Category" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">Infra</Value>
+    </Setting>
+    <Setting Name="Urgency" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Immediate</Value>
+    </Setting>
+    <Setting Name="Severity" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Extreme</Value>
+    </Setting>
+    <Setting Name="Certainty" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Observed</Value>
     </Setting>
   </Settings>
 </SettingsFile>

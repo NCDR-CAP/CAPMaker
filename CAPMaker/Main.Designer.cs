@@ -706,6 +706,7 @@
             // 
             // cbCertainty
             // 
+            this.cbCertainty.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Certainty", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cbCertainty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCertainty.FormattingEnabled = true;
             this.cbCertainty.Items.AddRange(new object[] {
@@ -718,9 +719,11 @@
             this.cbCertainty.Name = "cbCertainty";
             this.cbCertainty.Size = new System.Drawing.Size(121, 24);
             this.cbCertainty.TabIndex = 15;
+            this.cbCertainty.Text = global::CAPMaker.Properties.Settings.Default.Certainty;
             // 
             // cbSeverity
             // 
+            this.cbSeverity.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Severity", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cbSeverity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSeverity.FormattingEnabled = true;
             this.cbSeverity.Items.AddRange(new object[] {
@@ -733,9 +736,11 @@
             this.cbSeverity.Name = "cbSeverity";
             this.cbSeverity.Size = new System.Drawing.Size(121, 24);
             this.cbSeverity.TabIndex = 14;
+            this.cbSeverity.Text = global::CAPMaker.Properties.Settings.Default.Severity;
             // 
             // cbUrgency
             // 
+            this.cbUrgency.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CAPMaker.Properties.Settings.Default, "Urgency", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cbUrgency.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbUrgency.FormattingEnabled = true;
             this.cbUrgency.Items.AddRange(new object[] {
@@ -748,6 +753,7 @@
             this.cbUrgency.Name = "cbUrgency";
             this.cbUrgency.Size = new System.Drawing.Size(121, 24);
             this.cbUrgency.TabIndex = 13;
+            this.cbUrgency.Text = global::CAPMaker.Properties.Settings.Default.Urgency;
             // 
             // label14
             // 
