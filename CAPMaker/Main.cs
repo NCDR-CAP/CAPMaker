@@ -186,8 +186,11 @@ namespace CAPMaker
                 {
                     var _xml = cap.FormatXML();
 
+                    var _tmp = Path.ChangeExtension(sfdSave.FileName, ".tmp");
 
-                    File.WriteAllText(sfdSave.FileName, _xml);
+                    File.WriteAllText(_tmp, cap);
+
+                    File.Move(_tmp, sfdSave.FileName);
 
                     MessageBox.Show("完成存檔", "儲存檔案", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
